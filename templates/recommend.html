@@ -27,26 +27,30 @@
    <div class="container">
        <div class="row">
            <div class="col-md-12">
-               <h1 class="text-white" style="font-size: 40px"> Recommended books</h1>
+               <h1 class="text-white" style="font-size: 40px"> Recommended Movies</h1>
            <form action='/recommend_movie' method="post">
-                 <label for="cars">Select Movie::</label>
-                    <select name="user_input">
-                         {% for i in range(movie_name|length) %}
-                           <option style="width: max-content"> {{movie_name[i]}} </option>
-                        {% endfor %}
-                    </select>
+                 <label style="color: white">Select Movie::</label>
+                    {% if a %}
+                        <select name="user_input">
+                             {% for i in a['movie_name'] %}
+                               <option style="width: max-content"> {{i}} </option>
+                            {% endfor %}
+                        </select>
+                    {% else %}
+                        <select name="user_input">
+                             {% for i in range(movie_name|length) %}
+                               <option style="width: max-content"> {{movie_name[i]}} </option>
+                            {% endfor %}
+                        </select>
+                    {%endif%}
                  <input type="submit" value="Submit">
 
            </form>
-           <form action="/recommend">
-               <button>
-                   reload
-               </button>
-           </form>
            </div>
 
-           {% if data %}
-              {% for i in data %}
+           {% if a %}
+              <h3 style="color: orange"> Recommendation for {{ a['i'] }}</h3>
+              {% for i in a['data'] %}
                  <div class="col-lg-4 col-md-3 col-sm-3" style="margin-top: 50px; margin-bottom: 60px">
                       <div class="card">
                          <div class="card-body">

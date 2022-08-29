@@ -45,8 +45,9 @@ def recommend():
         item.append((movies.iloc[i[0]].title))
         item.append((movies.iloc[i[0]].poster_path))
         data.append(item)
-
-    return render_template('recommend.html', data=data)
+    movie_name = list(movies['title'].values)
+    movie_name.sort()
+    return render_template('recommend.html', a={'data':data,'i': user_input, 'movie_name':movie_name})
 
 
 
